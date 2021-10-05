@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Android\\project\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_signin.xml",
+        "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_signin.xml"
+    },
+    {
+        "merged": "C:\\Android\\project\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_home.xml",
+        "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Android\\project\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_sign_up.xml",
+        "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    }
+]
