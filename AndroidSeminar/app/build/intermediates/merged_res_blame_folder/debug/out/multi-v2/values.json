@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Android\\project\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
-                {
-                    "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "7,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "293,57,105,153,201,247,336",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "330,99,147,195,241,287,373"
-                    },
-                    "to": {
-                        "startLines": "493,581,582,583,594,595,598",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "23850,29843,29890,29937,30681,30726,30892",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "23887,29885,29932,29979,30721,30766,30929"
-                    }
-                },
                 {
                     "source": "C:\\Users\\이호재\\.gradle\\caches\\transforms-2\\files-2.1\\a04a49ca44f63bbcae29896039fc2cce\\jetified-viewpager2-1.0.0\\res\\values\\values.xml",
                     "from": {
@@ -116,25 +99,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "102",
-                        "endLines": "14",
-                        "endColumns": "12",
-                        "endOffsets": "837"
-                    },
-                    "to": {
-                        "startLines": "3868",
-                        "startColumns": "4",
-                        "startOffsets": "253911",
-                        "endLines": "3880",
-                        "endColumns": "12",
-                        "endOffsets": "254632"
-                    }
-                },
-                {
                     "source": "C:\\Users\\이호재\\.gradle\\caches\\transforms-2\\files-2.1\\8addaf577d4a0e268127b074b4bdb39d\\fragment-1.3.6\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,10",
@@ -190,6 +154,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "51",
+                        "endOffsets": "64"
+                    },
+                    "to": {
+                        "startLines": "1187",
+                        "startColumns": "4",
+                        "startOffsets": "68828",
+                        "endColumns": "51",
+                        "endOffsets": "68875"
+                    }
+                },
+                {
                     "source": "C:\\Users\\이호재\\.gradle\\caches\\transforms-2\\files-2.1\\d1a301d0b4b257bbb4feb4475a49e1a9\\jetified-appcompat-resources-1.3.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,29,36,47,74",
@@ -206,6 +187,25 @@
                         "endLines": "5285,5292,5303,8774,8779",
                         "endColumns": "24,24,24,24,24",
                         "endOffsets": "347287,347672,348269,523947,524217"
+                    }
+                },
+                {
+                    "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "102",
+                        "endLines": "14",
+                        "endColumns": "12",
+                        "endOffsets": "837"
+                    },
+                    "to": {
+                        "startLines": "3868",
+                        "startColumns": "4",
+                        "startOffsets": "253911",
+                        "endLines": "3880",
+                        "endColumns": "12",
+                        "endOffsets": "254632"
                     }
                 },
                 {
@@ -247,20 +247,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Android\\project\\AndroidSeminar\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "51",
-                        "endOffsets": "63"
+                        "startLines": "7,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "293,57,105,153,201,247,336",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "330,99,147,195,241,287,373"
                     },
                     "to": {
-                        "startLines": "1187",
-                        "startColumns": "4",
-                        "startOffsets": "68828",
-                        "endColumns": "51",
-                        "endOffsets": "68875"
+                        "startLines": "493,581,582,583,594,595,598",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "23850,29843,29890,29937,30681,30726,30892",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "23887,29885,29932,29979,30721,30766,30929"
                     }
                 },
                 {

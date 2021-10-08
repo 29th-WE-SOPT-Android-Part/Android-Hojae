@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Android\\project\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hr\\values-hr.xml",
+            "outputFile": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hr\\values-hr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\이호재\\.gradle\\caches\\transforms-2\\files-2.1\\4d286937896ac99c188c7f6dbbcd4ad4\\material-1.4.0\\res\\values-hr\\values-hr.xml",
