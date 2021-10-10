@@ -11,7 +11,7 @@
 9-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:5:5-23:19
+11-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:5:5-26:19
 12        android:allowBackup="true"
 12-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -25,31 +25,38 @@
 17-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:9:9-54
 18        android:supportsRtl="true"
 18-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:10:9-35
-19        android:theme="@style/Theme.AndroidSeminar" >
-19-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:11:9-52
-20        <activity
-20-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:12:9-14:39
-21            android:name="com.example.androidseminar.SignUpActivity"
-21-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:13:13-43
-22            android:exported="true" />
-22-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:14:13-36
-23        <activity android:name="com.example.androidseminar.HomeActivity" />
-23-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:15:9-50
-23-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:15:19-47
-24        <activity android:name="com.example.androidseminar.SignInActivity" >
-24-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:16:9-22:20
-24-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:16:19-49
-25            <intent-filter>
-25-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:17:13-21:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:18:17-69
-26-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:18:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:20:17-77
-28-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:20:27-74
-29            </intent-filter>
-30        </activity>
-31    </application>
-32
-33</manifest>
+19        android:testOnly="true"
+20        android:theme="@style/Theme.AndroidSeminar" >
+20-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:11:9-52
+21        <activity
+21-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:12:9-14:39
+22            android:name="com.example.androidseminar.week2"
+22-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:13:13-34
+23            android:exported="true" />
+23-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:14:13-36
+24        <activity
+24-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:15:9-17:39
+25            android:name="com.example.androidseminar.SignUpActivity"
+25-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:16:13-43
+26            android:exported="true" />
+26-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:17:13-36
+27        <activity android:name="com.example.androidseminar.HomeActivity" />
+27-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:18:9-50
+27-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:18:19-47
+28        <activity android:name="com.example.androidseminar.SignInActivity" >
+28-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:19:9-25:20
+28-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:19:19-49
+29            <intent-filter>
+29-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:20:13-24:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:21:17-69
+30-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:21:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:23:17-77
+32-->C:\Github\Android-Hojae\AndroidSeminar\app\src\main\AndroidManifest.xml:23:27-74
+33            </intent-filter>
+34        </activity>
+35    </application>
+36
+37</manifest>

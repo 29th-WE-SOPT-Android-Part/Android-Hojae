@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import com.example.androidseminar.R;
 import java.lang.NullPointerException;
@@ -17,10 +17,13 @@ import java.lang.String;
 
 public final class ActivityHomeBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final TextView ageTextview;
+
+  @NonNull
+  public final ImageView githubBtn;
 
   @NonNull
   public final TextView introductionTextview;
@@ -37,12 +40,13 @@ public final class ActivityHomeBinding implements ViewBinding {
   @NonNull
   public final TextView titleTextview;
 
-  private ActivityHomeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView ageTextview,
-      @NonNull TextView introductionTextview, @NonNull TextView mbtiTextview,
-      @NonNull TextView nameTextview, @NonNull ImageView profileImageview,
-      @NonNull TextView titleTextview) {
+  private ActivityHomeBinding(@NonNull ScrollView rootView, @NonNull TextView ageTextview,
+      @NonNull ImageView githubBtn, @NonNull TextView introductionTextview,
+      @NonNull TextView mbtiTextview, @NonNull TextView nameTextview,
+      @NonNull ImageView profileImageview, @NonNull TextView titleTextview) {
     this.rootView = rootView;
     this.ageTextview = ageTextview;
+    this.githubBtn = githubBtn;
     this.introductionTextview = introductionTextview;
     this.mbtiTextview = mbtiTextview;
     this.nameTextview = nameTextview;
@@ -52,7 +56,7 @@ public final class ActivityHomeBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -80,6 +84,12 @@ public final class ActivityHomeBinding implements ViewBinding {
       id = R.id.age_textview;
       TextView ageTextview = rootView.findViewById(id);
       if (ageTextview == null) {
+        break missingId;
+      }
+
+      id = R.id.github_btn;
+      ImageView githubBtn = rootView.findViewById(id);
+      if (githubBtn == null) {
         break missingId;
       }
 
@@ -113,8 +123,8 @@ public final class ActivityHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityHomeBinding((ConstraintLayout) rootView, ageTextview, introductionTextview,
-          mbtiTextview, nameTextview, profileImageview, titleTextview);
+      return new ActivityHomeBinding((ScrollView) rootView, ageTextview, githubBtn,
+          introductionTextview, mbtiTextview, nameTextview, profileImageview, titleTextview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
