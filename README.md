@@ -103,7 +103,6 @@ binding.loginButton.setOnClickListener {
         }
 ```    
 ### ✔***HomeActivity***  
-<img src="https://user-images.githubusercontent.com/91423342/136687922-5a8aa7f4-17a0-44b3-9d45-5683b9294925.png" width="200" height="380"/>  
 
 - #### 프로필 사진  
 
