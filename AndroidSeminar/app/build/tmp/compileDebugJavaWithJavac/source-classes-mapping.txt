@@ -1,8 +1,12 @@
 com/example/androidseminar/BuildConfig.java
  com.example.androidseminar.BuildConfig
-com/example/androidseminar/databinding/ActivitySigninBinding.java
- com.example.androidseminar.databinding.ActivitySigninBinding
 com/example/androidseminar/databinding/ActivitySignUpBinding.java
  com.example.androidseminar.databinding.ActivitySignUpBinding
+com/example/androidseminar/DataBindingTriggerClass.java
+ com.example.androidseminar.DataBindingTriggerClass
+com/example/androidseminar/databinding/ActivitySigninBinding.java
+ com.example.androidseminar.databinding.ActivitySigninBinding
+com/example/androidseminar/User.java
+ com.example.androidseminar.User
 com/example/androidseminar/databinding/ActivityHomeBinding.java
  com.example.androidseminar.databinding.ActivityHomeBinding

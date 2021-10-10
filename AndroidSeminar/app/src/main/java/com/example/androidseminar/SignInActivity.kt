@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
+import com.example.androidseminar.databinding.ActivityHomeBinding
 import com.example.androidseminar.databinding.ActivitySigninBinding
 
 class SignInActivity : AppCompatActivity() {
@@ -43,7 +45,7 @@ class SignInActivity : AppCompatActivity() {
                 }
             })
 
-        binding = ActivitySigninBinding.inflate(layoutInflater) // binding에 xml에 있는 뷰들을 java 객체로 만들어줄 (layoutInflater) 넣었다.
+        binding = DataBindingUtil.setContentView<ActivitySigninBinding>(this,R.layout.activity_signin) // binding에 xml에 있는 뷰들을 java 객체로 만들어줄 (layoutInflater) 넣었다.
         // layoutInflater : xml에 있는 뷰들을 java객체로 만들어주는 애.
         // inflate() :
         // layoutinflater 를 inflate에 넣으면 뭐가 나오고 그거를 다시 binding이라는 변수에 넣었따.
