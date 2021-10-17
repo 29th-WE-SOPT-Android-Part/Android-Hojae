@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_signin.xml",
+        "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_signin.xml"
+    },
+    {
+        "merged": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_sign_up.xml",
+        "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    },
+    {
+        "merged": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_home.xml",
+        "source": "C:\\Github\\Android-Hojae\\AndroidSeminar\\app\\src\\main\\res\\layout\\activity_home.xml"
+    }
+]
