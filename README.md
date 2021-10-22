@@ -1,127 +1,207 @@
-## ✅Level1
-### ✔***SignInActivity***
-<img src="https://user-images.githubusercontent.com/91423342/136684801-e5b4e55c-fd43-48a2-a77e-0a09caae2ef4.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136685841-31b27ab2-5025-449e-86f8-2bd6048fe8a0.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136685916-0070b78f-fe99-4862-abad-eeb11d418550.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136686074-7bcd86de-1822-4d85-a327-81005098270d.png" width="200" height="380"/>  
+## ✅Level1  
+### ✔***Home xml*** 
+<img src="https://user-images.githubusercontent.com/91423342/138451598-689563f0-053d-4cf5-a141-bb62a1ae82f5.jpg" width="200" height="380"/> 
 
-- #### 아이디
-
-```xml
-<EditText
-        ...
-        android:hint="아이디를 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="text" // android:inputType 속성 중 text 설정으로 입력내용 보여짐  
-        ...
-        />
-```
- - #### 비밀번호
 ``` xml
-<EditText
-        ...
-        android:hint="비밀번호를 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현  
-        android:inputType="textPassword" // android:inputType 속성 중 textPassword 설정으로 입력내용 가려짐
-        ...
-        />
+     <!--팔로워 리스트 버튼 생성-->
+    <Button
+        android:id="@+id/followerList_button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F16A98"
+        android:text="팔로워\n목록"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/repositoryList_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introduction_textview" />
+
+    <!--레포지토리 리스트 버튼 생성-->
+    <Button
+        android:id="@+id/repositoryList_button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FF9800"
+        android:text="레포지토리\n목록"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/followerList_button"
+        app:layout_constraintTop_toBottomOf="@id/introduction_textview" />
+
+<!--프레그먼트를 HomeActivity에 띄워줄 FragmentContainerView 생성-->
+<androidx.fragment.app.FragmentContainerView
+    android:id="@+id/main_continer"
+    app:layout_constraintTop_toBottomOf="@id/followerList_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+```  
+
+### ✔***Follower List Fragment***
+<img src="https://user-images.githubusercontent.com/91423342/138447241-cf104c5b-b1fe-4b94-92f2-c9b2871a6d07.png" width="200" height="380"/>  
+
+ - #### follower_list.xml : 이미지와 텍스트뷰를 사용하여 샘플 팔로워 리스트 1개를 생성    
+ - #### FollowerListFragment  
+ 
+``` kotlin  
+
+class FollowerListFragment : Fragment() {
+    private lateinit var followerAdapter: FollowerAdapter
+    private var binding: FragmentFollowerListBinding? = null// xml에 있는 모든 뷰들을 묶음
+    // ? !! => 변수가 null인지에 대한
+    // ? = null일 수 있다. 클래스 명 뒤에 쓰면, 이 클래스 타입의 변수는 이 클래스의 객체거나 null이다.
+    // 아무것도 안 붙인경우= null이 아니다. 클래스 명 뒤 / 변수 명뒤
+    // !! = 이 변수는 null이 아니다. 변수명 뒤에 쓴다. ! 는 같지않다는 뜻이기 때문에 !!로 쓴다.
+    // private lateinit var mainFollowerAdapter: FollowerAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentFollowerListBinding.inflate(layoutInflater)
+        followerAdapter = FollowerAdapter()
+
+        binding!!.rvFollower.adapter = followerAdapter
+        followerAdapter.userList.addAll(listOf(
+            UserData("문다빈","안드로이드 파트장"),
+            UserData("장혜령","IOS 파트장"),
+            UserData("김우영","서버 파트장")
+        ))
+        // followerAdapter를 사용해 변경된 데이터를 적용시킨다.
+        followerAdapter.notifyDataSetChanged()
+
+        return binding!!.root // xml의 가장 큰 Constraintlayout을 반환. 걍 폴더째로 보낸다.는 뜻임
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+}
+// Runtime error : 실행 중에 갑자기 꺼져버리는 에러 => 가장 피해야한다.
+// 코드를 치면서 코드에서 에러가 나는 것을 보고싶다 실행하고 아는게 아니고
+// 그래서 ? !!등을 사용하여 null로 인한 에러를 미연에 알아차리려고 하는 것
+// null 안되는 값인 !!붙인 거에 null 넣으면 바로 코드에 빨간줄로 알려줌
+
+// int, boolean 같은 기본자료형은 자동으로 0같은 자동 초기화값이 정해져있다
+// 반면, 임의로 우리가 생성한 클래스들의 초기값은 보통 null이다.  
 ```
- - #### 로그인 버튼  
-``` kotlin  
-// loginButton을 클릭했을때, 
-binding.loginButton.setOnClickListener {
+### ✔***Repository List Fragment***
+<img src="https://user-images.githubusercontent.com/91423342/138475496-7db2ed78-9e17-4b5e-b33a-d4aad3a483c1.png" width="200" height="380"/>  
 
-// isBlank() 함수를 이용하여 아이디 / 패스워드 EditText뷰의 text가 비어있거나 스페이스 바만 쳐있는지 값을 반환
-            val idIsEmpty = binding.idEditText.text.isBlank()
-            val passwordIsEmpty = binding.pwEditText.text.isBlank()
-
-// 두 EditText뷰 중 하나라도 값이 비어있다면, 니 실패했다고 Toast를 띄운다. homeActivity를 실행한다.
-            if (idIsEmpty || passwordIsEmpty) {
-                Toast.makeText(this,"로그인 실패", Toast.LENGTH_SHORT).show()
-            }
-            
-// 둘 다 값이 들어있다면,            
-            else {
-                val homeActivityIntent = Intent(this, HomeActivity::class.java) // homeActivity의 정보를 homeActivityIntent 변수에 저장
-                startActivity(homeActivityIntent) // startActivity 함수에 homeActivity 정보를 넣어주어, homeActivity를 실행
-                Toast.makeText(this, "000님 환영합니다", Toast.LENGTH_SHORT).show() // 그리고 환영한다고 Toast 실행 
-            }
-        }  
-```    
-- #### 회원가입 버튼  
-``` kotlin  
-// signupButton을 클릭했을때,
- binding.signupButton.setOnClickListener {
-            val signUpActivityIntent = Intent(this,SignUpActivity::class.java) // SignUpActivity의 정보를 signUpActivityIntent 변수에 저장
-            startActivity(signUpActivityIntent) // startActivity 함수에 SignUpActivity 정보를 넣어주어, SignUpActivity를 실행
-        }  
-```     
-
-### ✔***SignUpActivity***  
-<img src="https://user-images.githubusercontent.com/91423342/136687013-04742960-c3ce-4964-bb9b-0ebbdf854c82.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687075-fbd666f1-12f7-448a-abe8-25f8559af7dd.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687103-5245a543-8336-4267-becd-6611f14300a7.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687142-96d748ca-3524-4cca-898f-d4718a973dcd.png" width="200" height="380"/>  
-
-- #### 이름  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="이름을 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현    
-        android:inputType="text"  // android:inputType 속성 중 text 설정으로 입력내용 보여짐  
-        ...  
-        />  
-```  
-- #### 아이디  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="아이디를 입력해주세요"  // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="text"  // android:inputType 속성 중 text 설정으로 입력내용 보여짐
-        ...  
-        />  
-```  
-- #### 비밀번호  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="비밀번호를 입력해주세요"  // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="textPassword"  // android:inputType 속성 중 textPassword 설정으로 입력내용 가려짐
-        ...  
-        />  
-```  
-- #### 회원가입 완료 버튼  
-``` kotlin  
-  binding.signinCompleteButton.setOnClickListener {
-  // isBlank() 함수를 이용하여 이름 / 아이디 / 패스워드 EditText뷰의 text가 비어있거나 스페이스 바만 쳐있는지 값을 반환  
-            val nameIsEmpty : Boolean = binding.nameEditText.text.isBlank()
-            val idIsEmpty : Boolean = binding.idEditText.text.isBlank()
-            val passwordIsEmpty : Boolean = binding.passwordEditText.text.isBlank()
-            
- // EditText뷰 셋 중 하나라도 값이 비어있다면, 니 실패했다고 Toast를 띄운다.
-            if (nameIsEmpty||idIsEmpty||passwordIsEmpty) {
-                Toast.makeText(this,"입력되지 않은 정보가 있습니다.",Toast.LENGTH_SHORT).show()
-            }
-            
- // 셋 다 값이 들어있다면, SignUpActivity를 끝내고 인텐트를 넘겨줬던 SignInActivity로 돌아간다.          
-            else {
-                finish() 
-            }
-        }
-```    
-### ✔***HomeActivity***  
-<img src="https://user-images.githubusercontent.com/91423342/136687922-5a8aa7f4-17a0-44b3-9d45-5683b9294925.png" width="200" height="380"/>  
-
-- #### 프로필 사진  
+ - #### repository_list.xml : 이미지와 텍스트뷰를 사용하여 샘플 레포지토리 리스트 1개를 생성
 
 ``` xml  
-<ImageView
-        android:id="@+id/profile_imageview"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/profileimage" // drawable 폴더에 image룰 등록하여 사용하였다.
-        android:layout_marginTop="40dp"
+ <TextView
+        android:id="@+id/repository_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="레포지토리 이름"
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_textview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
         />
+    <!--layout_constraintHorizontal_bias : 비율로 수평선에서 뷰위치 지정 매우 유용한듯-->
+
+    <TextView
+        android:id="@+id/repository_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="레포지토리 설명"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@id/repository_name"
+        app:layout_constraintTop_toBottomOf="@id/repository_name"
+        android:layout_marginTop="10dp"
+        />
+
 ```  
-## ✅Level2  
-### ✔***SignInActivity***  
 
+ - #### RepositoryListFragment  
+ 
+``` kotlin  
 
+class RepositoryListFragment : Fragment() {
+    private lateinit var repositoryAdapter : RepositoryAdapter
+    private var binding : FragmentRepositoryListBinding? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding = FragmentRepositoryListBinding.inflate(layoutInflater)
+        repositoryAdapter = RepositoryAdapter()
+
+        binding!!.rvRepository.adapter = repositoryAdapter
+        repositoryAdapter.repositoryList.addAll(listOf(
+            RepositoryData("안드로이드 과제 레포지토리","안드로이드 과제")
+            ,RepositoryData("IOS 과제 레포지토리","IOS 과제")
+            ,RepositoryData("서버 과제 레포지토리","서버 과제")
+        ))
+        repositoryAdapter.notifyDataSetChanged()
+        return binding!!.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+}  
+
+```
+### ✔***Home Activity***  
+
+``` kotlin  
+
+class HomeActivity : AppCompatActivity() {
+    lateinit var binding: ActivityHomeBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this,R.layout.activity_home)
+        val user = User("이호재","25","infp","간단한 자기소개 안녕하세요~~~")
+        binding.user=user
+        initTransactionEvent()
+        setContentView(binding.root) // 자바 객체를 전달
+        //setContentView(R.layout.activity_home) : xml을 전달
+    }
+
+    private fun initTransactionEvent() {
+        val fragment1 = FollowerListFragment()
+        val fragment2 = RepositoryListFragment()
+
+        binding.followerListButton.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.main_continer,fragment1)
+            transaction.commit()
+        }
+        binding.repositoryListButton.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.main_continer,fragment2)
+            transaction.commit()
+        }
+    }
+}  
+
+```  
+### ✔***Grid Layout***  
+``` xml
+ <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_repository"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+<!--GridLayoutManager, LinearLayoutManager로 변경-->
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" 
+        app:spanCount="2"
+        tools:itemCount="3"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:listitem="@layout/repository_list"
+        />  
+
+```
 
 
 
