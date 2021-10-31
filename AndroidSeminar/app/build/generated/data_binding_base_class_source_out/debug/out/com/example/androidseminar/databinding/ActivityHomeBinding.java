@@ -4,6 +4,7 @@ package com.example.androidseminar.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.FragmentContainerView;
 import com.example.androidseminar.R;
 import com.example.androidseminar.User;
 import java.lang.Deprecated;
@@ -21,10 +23,13 @@ public abstract class ActivityHomeBinding extends ViewDataBinding {
   public final TextView ageTextview;
 
   @NonNull
-  public final ImageView githubBtn;
+  public final Button followerListButton;
 
   @NonNull
   public final TextView introductionTextview;
+
+  @NonNull
+  public final FragmentContainerView mainContiner;
 
   @NonNull
   public final TextView mbtiTextview;
@@ -36,22 +41,27 @@ public abstract class ActivityHomeBinding extends ViewDataBinding {
   public final ImageView profileImageview;
 
   @NonNull
+  public final Button repositoryListButton;
+
+  @NonNull
   public final TextView titleTextview;
 
   @Bindable
   protected User mUser;
 
   protected ActivityHomeBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      TextView ageTextview, ImageView githubBtn, TextView introductionTextview,
-      TextView mbtiTextview, TextView nameTextview, ImageView profileImageview,
-      TextView titleTextview) {
+      TextView ageTextview, Button followerListButton, TextView introductionTextview,
+      FragmentContainerView mainContiner, TextView mbtiTextview, TextView nameTextview,
+      ImageView profileImageview, Button repositoryListButton, TextView titleTextview) {
     super(_bindingComponent, _root, _localFieldCount);
     this.ageTextview = ageTextview;
-    this.githubBtn = githubBtn;
+    this.followerListButton = followerListButton;
     this.introductionTextview = introductionTextview;
+    this.mainContiner = mainContiner;
     this.mbtiTextview = mbtiTextview;
     this.nameTextview = nameTextview;
     this.profileImageview = profileImageview;
+    this.repositoryListButton = repositoryListButton;
     this.titleTextview = titleTextview;
   }
 
