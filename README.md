@@ -1,127 +1,121 @@
 ## ✅Level1
-### ✔***SignInActivity***
-<img src="https://user-images.githubusercontent.com/91423342/136684801-e5b4e55c-fd43-48a2-a77e-0a09caae2ef4.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136685841-31b27ab2-5025-449e-86f8-2bd6048fe8a0.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136685916-0070b78f-fe99-4862-abad-eeb11d418550.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136686074-7bcd86de-1822-4d85-a327-81005098270d.png" width="200" height="380"/>  
+### ✔***POSTMAN 테스트***
+<img src="https://user-images.githubusercontent.com/91423342/141465927-4efe5b4c-b8bf-4e4c-9ed9-17047ad95806.png" width="1200" height="600"/>  
 
-- #### 아이디
+- #### 회원가입 완료
+        POSTMAN의 POST 메소드를 통해서, json형식의 데이터를 서버에 제출하였다.
+        => Response단에서 정상작동 확인!
+ 
 
-```xml
-<EditText
-        ...
-        android:hint="아이디를 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="text" // android:inputType 속성 중 text 설정으로 입력내용 보여짐  
-        ...
-        />
-```
- - #### 비밀번호
-``` xml
-<EditText
-        ...
-        android:hint="비밀번호를 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현  
-        android:inputType="textPassword" // android:inputType 속성 중 textPassword 설정으로 입력내용 가려짐
-        ...
-        />
-```
- - #### 로그인 버튼  
+<img src="https://user-images.githubusercontent.com/91423342/141466018-de89a2c1-378a-46c4-8232-146372e3f1a4.png" width="1200" height="600"/>  
+
+- #### 로그인 완료
+        POSTMAN의 GET 메소드를 통해서, 저장되어있는 데이터를 서버에서 조회하였다.
+        기존 저장데이터외에 신규 제출된 데이터는 서버에 저장되지 않아서 서팟장님 이메일로 조회를 진행해보았다.
+        => Response단에서 정상작동 확인!
+
+### ✔***서버통신 실습***  
+<img src="https://user-images.githubusercontent.com/91423342/141467917-d14a3af4-5acd-428b-b504-74c7617d12e5.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/141467950-60b3eac3-84b9-4f3b-9e0b-8a74da6d544c.png" width="200" height="380"/> 
+
+- #### RequestLoginData  
 ``` kotlin  
-// loginButton을 클릭했을때, 
-binding.loginButton.setOnClickListener {
+ //서버에 제출한 데이터양식을 객체로 구현하였다.
+  data class RequestLoginData(
+    @SerializedName("email") //이때 email은 json에서 사용하는 키값 id와 다르므로 @SerializedName 어노테이션으로 보완하였다.
+    val id : String,
+    val password : String
+)
 
-// isBlank() 함수를 이용하여 아이디 / 패스워드 EditText뷰의 text가 비어있거나 스페이스 바만 쳐있는지 값을 반환
-            val idIsEmpty = binding.idEditText.text.isBlank()
-            val passwordIsEmpty = binding.pwEditText.text.isBlank()
+```  
+- #### ResponseLoginData  
+``` kotlin  
+ //서버에서 받아올 데이터양식을 객체로 구현하였다.
+  data class ResponseLoginData(
+    val status: Int,
+    val success: Boolean,
+    val message: String,
+    val data : Data //여기서 data는 변수가 아닌 객체이므로 중괄호를 사용하여 중첩클래스 형식으로 구현하였다.
+) {
+    data class Data( 
+        val id : Int,
+        val name : String,
+        val email : String
+    )
+}  
+```  
+- #### Sample Service  
+``` kotlin  
+//POSTMAN에서 했던 서버통신을 구현하는 인터페이스 생성
+ interface SampleService {
+    @Headers("Content-Type:application/json")
+    @POST("user/login") // POST메서드를 사용
+    fun postLogin(
+        @Body body:RequestLoginData // Body에 RequestBody 데이터가 input되면
+    ) : Call<ResponseLoginData> 
+}  // ResponseLoginData가 서버로부터 return
+```  
+- #### Service Creator  
+``` kotlin  
+// Retrofit Interface 객체만들기 :  Retrofit 객체를 생성 -> Retrofit을 사용해 SampleService 객체를 생성
+  object ServiceCreator {
+    private const val BASE_URL =  "https://asia-northeast3-we-sopt-29.cloudfunctions.net/api/"
 
-// 두 EditText뷰 중 하나라도 값이 비어있다면, 니 실패했다고 Toast를 띄운다. homeActivity를 실행한다.
-            if (idIsEmpty || passwordIsEmpty) {
-                Toast.makeText(this,"로그인 실패", Toast.LENGTH_SHORT).show()
-            }
-            
-// 둘 다 값이 들어있다면,            
-            else {
-                val homeActivityIntent = Intent(this, HomeActivity::class.java) // homeActivity의 정보를 homeActivityIntent 변수에 저장
-                startActivity(homeActivityIntent) // startActivity 함수에 homeActivity 정보를 넣어주어, homeActivity를 실행
-                Toast.makeText(this, "000님 환영합니다", Toast.LENGTH_SHORT).show() // 그리고 환영한다고 Toast 실행 
-            }
-        }  
+//1단계 : Retrofit 객체를 생성
+    private val retrofit : Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+//2단계 : Retrofit을 사용해 SampleService 객체를 생성
+    val sampleService:SampleService = retrofit.create(SampleService::class.java)
+
+}
 ```    
-- #### 회원가입 버튼  
+- #### LoginActivity  
 ``` kotlin  
-// signupButton을 클릭했을때,
- binding.signupButton.setOnClickListener {
-            val signUpActivityIntent = Intent(this,SignUpActivity::class.java) // SignUpActivity의 정보를 signUpActivityIntent 변수에 저장
-            startActivity(signUpActivityIntent) // startActivity 함수에 SignUpActivity 정보를 넣어주어, SignUpActivity를 실행
-        }  
-```     
-
-### ✔***SignUpActivity***  
-<img src="https://user-images.githubusercontent.com/91423342/136687013-04742960-c3ce-4964-bb9b-0ebbdf854c82.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687075-fbd666f1-12f7-448a-abe8-25f8559af7dd.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687103-5245a543-8336-4267-becd-6611f14300a7.png" width="200" height="380"/>  <img src="https://user-images.githubusercontent.com/91423342/136687142-96d748ca-3524-4cca-898f-d4718a973dcd.png" width="200" height="380"/>  
-
-- #### 이름  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="이름을 입력해주세요" // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현    
-        android:inputType="text"  // android:inputType 속성 중 text 설정으로 입력내용 보여짐  
-        ...  
-        />  
-```  
-- #### 아이디  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="아이디를 입력해주세요"  // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="text"  // android:inputType 속성 중 text 설정으로 입력내용 보여짐
-        ...  
-        />  
-```  
-- #### 비밀번호  
-``` kotlin  
- <EditText  
-        ...  
-        android:hint="비밀번호를 입력해주세요"  // android:hint 속성에 텍스트를 입력해서 미리보기 속성을 구현
-        android:inputType="textPassword"  // android:inputType 속성 중 textPassword 설정으로 입력내용 가려짐
-        ...  
-        />  
-```  
-- #### 회원가입 완료 버튼  
-``` kotlin  
-  binding.signinCompleteButton.setOnClickListener {
-  // isBlank() 함수를 이용하여 이름 / 아이디 / 패스워드 EditText뷰의 text가 비어있거나 스페이스 바만 쳐있는지 값을 반환  
-            val nameIsEmpty : Boolean = binding.nameEditText.text.isBlank()
-            val idIsEmpty : Boolean = binding.idEditText.text.isBlank()
-            val passwordIsEmpty : Boolean = binding.passwordEditText.text.isBlank()
-            
- // EditText뷰 셋 중 하나라도 값이 비어있다면, 니 실패했다고 Toast를 띄운다.
-            if (nameIsEmpty||idIsEmpty||passwordIsEmpty) {
-                Toast.makeText(this,"입력되지 않은 정보가 있습니다.",Toast.LENGTH_SHORT).show()
-            }
-            
- // 셋 다 값이 들어있다면, SignUpActivity를 끝내고 인텐트를 넘겨줬던 SignInActivity로 돌아간다.          
-            else {
-                finish() 
-            }
+class LoginActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityLoginBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding.btnLogin.setOnClickListener {
+            initNetwork()
         }
-```    
-### ✔***HomeActivity***  
-<img src="https://user-images.githubusercontent.com/91423342/136687922-5a8aa7f4-17a0-44b3-9d45-5683b9294925.png" width="200" height="380"/>  
 
-- #### 프로필 사진  
+        setContentView(binding.root)
+    }
 
-``` xml  
-<ImageView
-        android:id="@+id/profile_imageview"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:src="@drawable/profileimage" // drawable 폴더에 image룰 등록하여 사용하였다.
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_textview"
-        />
+    private fun initNetwork() {
+    // 서버에 전달할 RequestLoginData 객체 생성
+    // 로그인화면의 editText의 정보전달
+        val requestLoginData = RequestLoginData(
+            id = binding.etId.text.toString(),
+            password = binding.etpass.text.toString()
+        )
+
+        val call: Call<ResponseLoginData> = ServiceCreator.sampleService.postLogin(requestLoginData)
+        
+        //enqueue 메서드로 비동기 호출 선택
+        call.enqueue(object : Callback<ResponseLoginData> {
+            override fun onResponse(
+                call:Call<ResponseLoginData>,
+                response: Response<ResponseLoginData>
+            ) {
+                if(response.isSuccessful) {
+                    val data = response.body()?.data
+                    //로그인 성공시 토스트 메시지 호출
+                    Toast.makeText(this@LoginActivity,"${data?.email}님 반갑습니다!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@LoginActivity,SecondActivity::class.java))
+                } else
+                    //로그인 실패시 토스트 메시지 호출
+                    Toast.makeText(this@LoginActivity,"로그인에 실패했습니다",Toast.LENGTH_SHORT).show()
+            }
+            // 비동기 통신중 에러를 처리
+            override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
+                Log.e("NetworkTest", " error:$t")
+            }
+        })
+    }
+}
 ```  
-## ✅Level2  
-### ✔***SignInActivity***  
-
-
-
-
 
