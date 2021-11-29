@@ -1,3 +1,4 @@
+
 ## ✅Level1
 ### ✔***POSTMAN 테스트***
 <img src="https://user-images.githubusercontent.com/91423342/141465927-4efe5b4c-b8bf-4e4c-9ed9-17047ad95806.png" width="1200" height="600"/>  
@@ -85,6 +86,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+
     private fun initNetwork() {
     // 서버에 전달할 RequestLoginData 객체 생성
     // 로그인화면의 editText의 정보전달
@@ -117,5 +119,5 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 }
-```  
+
 
