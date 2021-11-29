@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/frameLayout2"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#fa79b0"
+      tools:context=".ProfileFragment">
+
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/group_814"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Wooyoung Kim"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kimwy1997@gmail.com"
+        android:textColor="#ffffff"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="|서버 파트장님"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_id" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_intro"
+        android:layout_marginTop="16dp"
+        android:background="#ffffff">
+
+      <Button
+          android:id="@+id/btn_followerlist"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/button_color"
+          android:text="팔로워목록"
+          android:layout_weight="1"
+          android:layout_margin="4dp"
+          android:textColor="@color/text_color" />
+
+      <Button
+          android:id="@+id/btn_repositorylist"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/button_color"
+          android:text="레포지토리 목록"
+          android:layout_margin="4dp"
+          android:layout_weight="1"
+          android:textColor="@color/text_color" />
+    </LinearLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearlayout"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="#ffffff"
+        tools:layout_editor_absoluteX="62dp">
+
+
+    </androidx.fragment.app.FragmentContainerView>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
